@@ -1,4 +1,6 @@
 import mongoose, { Schema } from "mongoose";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt" 
 
 const userSchema = new Schema(
     {
@@ -35,17 +37,21 @@ const userSchema = new Schema(
         },
         watchHistory: [
             {
-                type:Schema.Types.ObjectId,
-                ref:"Video"
+                type: Schema.Types.ObjectId,
+                ref: "Video"
             }
         ],
         refreshToken: {
-            type:String
+            type: String
         }
     },
     {
         timestamps: true
     }
 )
+
+userSchema.pre("save", async function(next) {
+    
+})
 
 export const User = mongoose.model("User", userSchema)
